@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Product Inventory</title>
+</head>
+<body>
+
+<div class="container">
+    <h2>Product Inventory Form</h2>
+    <form id="inventoryForm">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" required />
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required />
+
+        <label for="quantity">Quantity in Stock:</label>
+        <input type="number" id="quantity" name="quantity" required />
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required />
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('inventoryForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwmGGlfEXBykcNpjk2amhXqu6XA96qq04cAPbDVlAJVRLSqmK7fuGUs5qVaHPcH6mwp/exec', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            alert('Data submitted successfully!');
+            e.target.reset();
+        } else {
+            alert('Failed to submit data.');
+        }
+    });
+</script>
+
+</body>
+</html>
